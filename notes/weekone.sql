@@ -105,3 +105,20 @@ FROM dvd_rentals.film_list
 GROUP BY rating
 ORDER BY frequency DESC;
 
+--Multiple columns group by the 5 most frequent
+SELECT 
+    rating,
+    category,
+    COUNT(*) AS frequency
+FROM dvd_rentals.film_list
+GROUP BY rating, category
+ORDER BY frequency DESC 
+LIMIT 5;
+
+--Group by ordinal syntax
+SELECT
+    rating,
+    category,
+    COUNT(*) AS frequency
+FROM dvd_rentals.film_list
+GROUP BY 1, 2
