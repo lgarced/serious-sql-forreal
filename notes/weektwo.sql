@@ -162,3 +162,33 @@ GROUP BY
     systolic,
     diastolic
 HAVING COUNT(*) > 1; --you cannot reference the alias in the having clause
+
+
+--Which log date value had the most duplicates after removing the max value by date
+WITH duplicate_data AS (
+    SELECT 
+        id,
+        log_date,
+        measure,
+        measure_value,
+        systolic,
+        diastolic,
+        COUNT(*) AS record_count
+    FROM health.user_logs
+    GROUP BY 
+        id,
+        log_date,
+        measure,
+        measure_value,
+        systolic,
+        diastolic
+)
+
+SELECT log_date, 
+      SUM(record_count) AS total_count
+FROM duplicate_data
+WHERE record_count > 1
+  AND id != '054250c692e07a9fa9e62e345231df4b54ff435d'
+GROUP BY log_date
+ORDER BY total_count DESC;
+
