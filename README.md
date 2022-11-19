@@ -1,2 +1,4 @@
 # serious-sql-forreal
-Note from Dany Ma course
+Notes from Danny Ma course
+
+#This is some serious stuff do not look 
